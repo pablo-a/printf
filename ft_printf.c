@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/12 13:12:54 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/17 12:35:58 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/27 12:47:40 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ int		ft_subprintf(const char *format, int *i, t_list *lst, va_list *ap)
 {
 	(*i)++;
 	ft_store_options(format, i, lst);
+	if (lst->type == 'n')
+		ft_n_case(lst, ap);
 	if (lst->type == 'p')
 		ft_ptr_case(lst, ap);
 	else if (lst->type == 'c' || lst->type == 'C' || lst->type == 's'
@@ -80,6 +82,14 @@ int		ft_printf(const char *format, ...)
 	va_start(ap, format);
 	while (format[i])
 	{
+		if (format[i] == '{' && ft_strncmp(format + i, "{COLOR", 6) == 0)
+		{
+			if (ft_color(&(format[i + 7])) == 0)
+				return (0);
+			while (format[i] != '}')
+				i++;
+			i++;
+		}
 		if (format[i] == '%')
 			ft_subprintf(format, &i, lst, &ap);
 		else

@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/12 14:27:16 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/17 13:26:56 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/27 12:42:19 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,15 @@
 
 # define TRUE 1
 # define FALSE 0
+
+# define RED "\033[31m"
+# define BLACK "\033[30m"
+# define GREEN "\033[32m"
+# define BLUE "\033[34m"
+# define PURPLE "\033[35m"
+# define GRAY "\033[37m"
+# define YELLOW "\033[33m"
+# define END "\033[0m"
 
 typedef struct		s_list
 {
@@ -119,5 +128,8 @@ char				*flag_0(char *str);
 char				*goto_left(char *str);
 char				*blank_flag(char *str);
 int					diese_flag(t_list *lst);
+
+int					ft_n_case(t_list *lst, va_list *ap);
+int					ft_color(const char *format);
 
 #endif

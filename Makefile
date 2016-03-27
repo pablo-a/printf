@@ -6,7 +6,7 @@
 #    By: pabril <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/13 21:36:42 by pabril            #+#    #+#              #
-#    Updated: 2016/03/17 13:00:59 by pabril           ###   ########.fr        #
+#    Updated: 2016/03/27 12:02:16 by pabril           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ PRINTF_SRC = ft_printf.c \
 			 check_arguments.c \
 			 ft_flags_ops.c \
 			 ft_string_case.c \
+			 n_case.c \
 			 ft_ptr_case.c \
 			 ft_percent_case.c \
 			 ft_wide_chars.c \
@@ -40,7 +41,9 @@ PRINTF_SRC = ft_printf.c \
 			 ft_memset.c \
 			 ft_putcharn.c \
 			 ft_putchar_fd.c \
-			 ft_strncpy.c
+			 ft_strncpy.c \
+			 ft_strcmp.c \
+			 ft_strncmp.c
 
 OBJ = $(PRINTF_SRC:.c=.o)
 
