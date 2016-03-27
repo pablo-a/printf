@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/02 14:50:36 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/27 10:56:46 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/27 14:34:00 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,19 @@ int					ft_putnbr_signed(long long int n)
 long long			ft_get_signed_number(t_list *lst, long long a, va_list *ap)
 {
 	if (lst->l || lst->type == 'D')
-		a = (long long int)va_arg(*ap, long);
+		a = (long int)va_arg(*ap, long long int);
 	else if (lst->ll)
 		a = va_arg(*ap, long long int);
 	else if (lst->j)
-		a = (long long int)va_arg(*ap, intmax_t);
+		a = (intmax_t)va_arg(*ap, long long int);
 	else if (lst->z)
-		a = (long long int)va_arg(*ap, size_t);
+		a = (size_t)va_arg(*ap, long long int);
 	else if (lst->hh)
-		a = (long long)(char)va_arg(*ap, int);
+		a = (char)va_arg(*ap, long long int);
 	else if (lst->h)
-		a = (long long)(short int)va_arg(*ap, int);
+		a = (short int)va_arg(*ap, long long int);
 	else
-		a = (long long int)va_arg(*ap, int);
+		a = (int)va_arg(*ap, long long int);
 	return (a);
 }
 
@@ -51,19 +51,19 @@ unsigned long long	ft_get_unsigned_nb(t_list *lst, unsigned long long b,
 		va_list *ap)
 {
 	if (lst->l || lst->type == 'U' || lst->type == 'O')
-		b = (unsigned long long)va_arg(*ap, unsigned long int);
+		b = (unsigned long int)va_arg(*ap, unsigned long long int);
 	else if (lst->ll)
-		b = va_arg(*ap, unsigned long long);
+		b = va_arg(*ap, unsigned long long int);
 	else if (lst->j)
-		b = (unsigned long long)va_arg(*ap, uintmax_t);
+		b = (uintmax_t)va_arg(*ap, unsigned long long);
 	else if (lst->z)
-		b = (unsigned long long)va_arg(*ap, size_t);
+		b = (size_t)va_arg(*ap, unsigned long long);
 	else if (lst->hh)
-		b = (unsigned long long)(unsigned char)va_arg(*ap, unsigned int);
+		b = (unsigned char)va_arg(*ap, unsigned long long int);
 	else if (lst->h)
-		b = (unsigned long long)(unsigned short int)va_arg(*ap, unsigned int);
+		b = (unsigned short int)va_arg(*ap, unsigned long long int);
 	else
-		b = (unsigned long long)va_arg(*ap, unsigned int);
+		b = (unsigned int)va_arg(*ap, unsigned long long int);
 	return (b);
 }
 

@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/12 13:12:54 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/27 12:47:40 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/27 14:35:48 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,15 @@ int		ft_initialize(t_list **lst)
 	return (0);
 }
 
-int		ft_store_options(const char *format, int *i, t_list *lst)
+int		ft_store_options(const char *format, int *i, t_list *lst, va_list *ap)
 {
 	int n;
 
 	n = ft_check_flags(format, *i, &(lst));
 	(*i) += n;
-	n = ft_check_lenght(format, *i, &(lst->size));
+	n = ft_check_lenght(format, *i, &(lst), ap);
 	(*i) += n;
-	n = ft_check_precision(format, *i, &lst);
+	n = ft_check_precision(format, *i, &(lst), ap);
 	(*i) += n;
 	n = ft_check_modifiers(format, *i, &lst);
 	(*i) += n;
@@ -54,7 +54,7 @@ int		ft_store_options(const char *format, int *i, t_list *lst)
 int		ft_subprintf(const char *format, int *i, t_list *lst, va_list *ap)
 {
 	(*i)++;
-	ft_store_options(format, i, lst);
+	ft_store_options(format, i, lst, ap);
 	if (lst->type == 'n')
 		ft_n_case(lst, ap);
 	if (lst->type == 'p')

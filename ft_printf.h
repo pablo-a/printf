@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/12 14:27:16 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/27 12:42:19 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/27 14:25:40 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,17 @@ typedef struct		s_list
 }					t_list;
 
 int					ft_initialize(t_list **lst);
-int					ft_store_options(const char *format, int *i, t_list *lst);
+int					ft_store_options(const char *format, int *i, t_list *lst,
+							va_list *ap);
 int					ft_subprintf(const char *format, int *i,
 									t_list *lst, va_list *ap);
 int					ft_printf(const char *format, ...);
 
 int					ft_check_flags(const char *str, int i, t_list **lst);
-int					ft_check_lenght(const char *str, int i, int *result);
-int					ft_check_precision(const char *str, int i, t_list **lst);
+int					ft_check_lenght(const char *str, int i, t_list **lst,
+					va_list *ap);
+int					ft_check_precision(const char *str, int i, t_list **lst,
+					va_list *ap);
 int					ft_check_modifiers(const char *str, int i, t_list **lst);
 int					ft_check_type(const char *str, int i, char *c);
 

@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/13 12:39:37 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/27 11:01:47 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/27 14:29:43 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,22 @@ int		ft_check_flags(const char *str, int i, t_list **lst)
 	return (nb);
 }
 
-int		ft_check_lenght(const char *str, int i, int *result)
+int		ft_check_lenght(const char *str, int i, t_list **lst, va_list *ap)
 {
 	int size;
 
 	size = 0;
-	*result = ft_atoi(str + i);
+	if (str[i] == '*')
+	{
+		(*lst)->size = va_arg(*ap, int);
+		if ((*lst)->size < 0)
+		{
+			(*lst)->size *= -1;
+			(*lst)->minus = 1;
+		}
+		return (1);
+	}
+	(*lst)->size = ft_atoi(str + i);
 	while (ft_isdigit(str[i]))
 	{
 		size++;
@@ -51,11 +61,17 @@ int		ft_check_lenght(const char *str, int i, int *result)
 	return (size);
 }
 
-int		ft_check_precision(const char *str, int i, t_list **lst)
+int		ft_check_precision(const char *str, int i, t_list **lst, va_list *ap)
 {
 	int		nb;
 
 	nb = 0;
+	if (str[i + 1] == '*' || str[i] == '*')
+	{
+		(*lst)->modified_precision = 1;
+		(*lst)->precision = va_arg(*ap, int);
+		return (str[i] == '*' ? 1 : 2);
+	}
 	if (str[i] == '.')
 	{
 		i++;
