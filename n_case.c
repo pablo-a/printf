@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 10:52:43 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/27 12:49:45 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/27 17:48:47 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ int		ft_color(const char *format)
 	else if (ft_strncmp(format, "yellow", 6) == 0)
 		ft_print_str(YELLOW);
 	else
-		return (0);
+		exit(0);
 	return (1);
 }

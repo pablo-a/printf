@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/13 12:39:37 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/27 17:14:27 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/27 17:53:08 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,22 +72,19 @@ int		ft_check_precision(const char *str, int i, t_list **lst, va_list *ap)
 		(*lst)->precision = va_arg(*ap, int);
 		return (str[i] == '*' ? 1 : 2);
 	}
-	if (str[i] == '.')
+	if (str[i] != '.')
+		return (0);
+	i++;
+	nb++;
+	(*lst)->modified_precision = 1;
+	if (!ft_isdigit(str[i]))
+		return (nb);
+	(*lst)->precision = ft_atoi(str + i);
+	while (ft_isdigit(str[i]))
 	{
 		i++;
 		nb++;
-		(*lst)->modified_precision = 1;
-		if (!ft_isdigit(str[i]))
-			return (nb);
-		(*lst)->precision = ft_atoi(str + i);
-		while (ft_isdigit(str[i]))
-		{
-			i++;
-			nb++;
-		}
 	}
-	else
-		return (0);
 	return (nb);
 }
 

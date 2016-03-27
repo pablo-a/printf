@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/12 13:12:54 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/27 14:57:25 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/27 17:53:10 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,23 +78,20 @@ int		ft_printf(const char *format, ...)
 	if ((lst = (t_list *)malloc(sizeof(t_list))) == NULL)
 		return (0);
 	ft_initialize(&lst);
-	i = 0;
+	i = -1;
 	va_start(ap, format);
-	while (format[i])
+	while (format[++i])
 	{
 		if (format[i] == '{' && ft_strncmp(format + i, "{COLOR", 6) == 0)
 		{
-			if (ft_color(&(format[i + 7])) == 0)
-				return (0);
+			ft_color(&(format[i + 7]));
 			while (format[i] != '}')
 				i++;
-			i++;
 		}
-		if (format[i] == '%')
+		else if (format[i] == '%')
 			ft_subprintf(format, &i, lst, &ap);
 		else
 			lst->result += ft_print_char(format[i]);
-		i++;
 	}
 	va_end(ap);
 	return (lst->result);
