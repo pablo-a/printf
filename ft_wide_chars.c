@@ -6,18 +6,40 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 12:10:58 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/17 13:22:16 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/27 17:12:34 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 
-int		print_chars(void *memory, int size, t_list *lst)
+int		print_wchar(wint_t wint, t_list *lst)
 {
-	write(1, memory, size);
-	lst->result += size;
-	return (size);
+	int size;
+
+	if (wint < 0)
+		return (0);
+	else if (wint <= 0x7F)
+		size = 1;
+	else if (wint <= 0x7FF)
+		size = 2;
+	else if (wint <= 0xFFFF)
+		size = 3;
+	else if (wint <= 0x10FFFF)
+		size = 4;
+	else
+		return (0);
+	if (lst->minus)
+	{
+		print_wint(wint, lst);
+		lst->result += ft_print_space(lst->size - size);
+	}
+	else
+	{
+		lst->result += ft_print_space(lst->size - size);
+		print_wint(wint, lst);
+	}
+	return (0);
 }
 
 void	print_wint(wint_t wint, t_list *lst)

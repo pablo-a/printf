@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/20 16:29:50 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/17 13:26:40 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/27 17:15:49 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		ft_char_case(t_list *lst, va_list *ap)
 	}
 	else if ((lst->type == 'c' && lst->l) || lst->type == 'C')
 	{
-		print_wint(va_arg(*ap, wchar_t), lst);
+		print_wchar((wchar_t)va_arg(*ap, wint_t), lst);
 		return (0);
 	}
 	else if (lst->type == 's' || lst->type == 'S')

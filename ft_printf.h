@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/12 14:27:16 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/27 14:25:40 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/27 16:12:45 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ int					ft_percent_case(t_list *lst);
 
 int					print_chars(void *memory, int size, t_list *lst);
 void				print_wint(wint_t wint, t_list *lst);
+int					print_wchar(wint_t wint, t_list *lst);
 int					print_wide_chars(wchar_t *string, t_list *lst);
 size_t				count_wide_chars(t_list *lst, wchar_t *string,
 					size_t *lenght);
